@@ -16,7 +16,7 @@ function Ranking() {
 
   return (
     <div className="ranking-container">
-      <h2>🏆 Ranking das Jogadoras</h2>
+      <h2>🏆 Ranking dos Jogadores</h2>
       <table>
         <thead>
           <tr>

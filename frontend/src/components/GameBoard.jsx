@@ -63,7 +63,7 @@ function GameBoard() {
 
         if (!timerAtivo) {
             setTimerAtivo(true);
-            setTempoRestante(60); // ou 30, 90, etc.
+            setTempoRestante(120); // ou 30, 90, etc.
         }
 
         if (selected.length === 2 || selected.includes(index)) return;
@@ -132,8 +132,10 @@ function GameBoard() {
                     <p>⏳ Tempo restante: {tempoRestante}s</p>
                     <div
                         className="progresso"
-                        style={{ width: `${(tempoRestante / 90) * 100}%` }}
-                    ></div>
+                        style={{ width: `${(tempoRestante / 120) * 100}%` }}
+                    >
+                        <span className="tempo-texto">{tempoRestante}</span>
+                    </div>
                 </div>
             )}
 
