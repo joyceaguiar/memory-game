@@ -5,6 +5,7 @@ import Ranking from './Ranking';
 
 
 function GameBoard() {
+    const [nivelSelecionado, setNivelSelecionado] = useState(null);
     const [cards, setCards] = useState([]);
     const [selected, setSelected] = useState([]);
     const [matched, setMatched] = useState([]);
@@ -65,7 +66,7 @@ function GameBoard() {
 
         if (!timerAtivo) {
             setTimerAtivo(true);
-            setTempoRestante(120); // ou 30, 90, etc.
+            setTempoRestante(90); // ou 30, 90, etc.
         }
 
         if (selected.length === 2 || selected.includes(index)) return;
@@ -107,7 +108,7 @@ function GameBoard() {
                         })
                             .then(res => res.json())
                             .then(data => console.log("✅ Enviado com sucesso:", data))
-                            .catch(err => console.error("Erro ao enviar:", err));
+                            .catch(erro => console.error("Erro ao enviar:", erro));
                     }
 
                     return novosAcertos;
