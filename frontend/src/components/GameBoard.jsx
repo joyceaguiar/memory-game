@@ -3,6 +3,8 @@ import './GameBoard.css';
 import { useState, useEffect } from 'react';
 import Ranking from './Ranking';
 
+const BASE_URL = "http://localhost:3001";
+
 
 function GameBoard() {
     const [nivelSelecionado, setNivelSelecionado] = useState(null);
@@ -15,6 +17,8 @@ function GameBoard() {
     const [tempoRestante, setTempoRestante] = useState(null);
     const [timerAtivo, setTimerAtivo] = useState(false);
     const [derrota, setDerrota] = useState(false);
+    const [atualizarRanking, setAtualizarRanking] = useState(false);
+
 
 
     const iniciarJogo = (nivel) => {
@@ -111,16 +115,18 @@ function GameBoard() {
                     const novosAcertos = [...prev, cards[firstIndex].emoji];
 
                     if (novosAcertos.length === cards.length / 2) {
+                        const nome = prompt("Digite seu nome para o ranking:");
+
                         setVitoria(true);
 
-                        const nome = prompt("Digite seu nome para o ranking:");
+
                         confetti({
                             particleCount: 150,
                             spread: 90,
                             origin: { y: 0.6 }
                         });
 
-                        fetch("http://localhost:3001/rankings", {
+                        fetch(`${BASE_URL}/rankings`, {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json"
@@ -132,8 +138,13 @@ function GameBoard() {
                             })
                         })
                             .then(res => res.json())
-                            .then(data => console.log("✅ Enviado com sucesso:", data))
+                            .then(data => {
+                                console.log("✅ Enviado com sucesso:", data);
+                                setAtualizarRanking(prev => !prev);
+                            })
                             .catch(erro => console.error("Erro ao enviar:", erro));
+
+
                     }
 
                     return novosAcertos;
@@ -226,7 +237,8 @@ function GameBoard() {
                         })}
                     </div>
 
-                    <Ranking />
+                    <Ranking atualizar={atualizarRanking} />
+
                 </>
             )}
         </div>

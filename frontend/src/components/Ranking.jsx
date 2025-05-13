@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
 import './Ranking.css';
 
-function Ranking() {
+const BASE_URL = "http://localhost:3001";
+
+function Ranking({ atualizar }) {
   const [ranking, setRanking] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/rankings")
+    fetch(`${BASE_URL}/rankings`)
       .then(res => res.json())
       .then(data => {
         const ordenado = [...data].sort((a, b) => a.tentativas - b.tentativas);
         setRanking(ordenado.slice(0, 10)); // Top 10
       })
       .catch(err => console.error("Erro ao carregar ranking:", err));
-  }, []);
+  }, [atualizar]); // Atualiza sempre que a prop mudar
 
   return (
     <div className="ranking-container">
