@@ -45,7 +45,9 @@ function GameBoard() {
         if (!timerAtivo || tempoRestante === null) return;
 
         if (tempoRestante === 0) {
-            setDerrota(true);
+            if (!vitoria) {
+                setDerrota(true);
+            }
             setTimerAtivo(false);
             return;
         }
