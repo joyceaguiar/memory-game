@@ -156,10 +156,15 @@ function GameBoard() {
                                 <div className="front">{card.emoji}</div>
                                 <div className="back">❓</div>
                             </div>
+
+
                         </div>
+
                     );
                 })}
             </div>
+
+            <Ranking />
         </div>
     );
 }

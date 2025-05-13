@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import './Ranking.css';
 
 function Ranking() {
   const [ranking, setRanking] = useState([]);
@@ -7,9 +8,8 @@ function Ranking() {
     fetch("http://localhost:3001/rankings")
       .then(res => res.json())
       .then(data => {
-        // Ordena pelo menor número de tentativas
-        const ordenado = data.sort((a, b) => a.tentativas - b.tentativas);
-        setRanking(ordenado);
+        const ordenado = [...data].sort((a, b) => a.tentativas - b.tentativas);
+        setRanking(ordenado.slice(0, 10)); // Top 10
       })
       .catch(err => console.error("Erro ao carregar ranking:", err));
   }, []);
