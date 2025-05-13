@@ -1,11 +1,23 @@
+
 .card {
-    width: 90px;
-    height: 90px;
-    perspective: 1000px;
-    display: inline-block;
-    margin: 10px;
-    cursor: pointer;
-  }
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(to right, #ff6ec4, #7873f5);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 8px rgba(255, 110, 196, 0.4);
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 110, 196, 0.7);
+}
+
+
   
   .inner {
     width: 100%;
@@ -32,67 +44,72 @@
   }
   
   .front {
-    background-color: #cf077c;
     color: white;
     transform: rotateY(180deg);
   }
   
   .back {
-    background-color: #e79bd7;
     color: white;
   }
 
   .board {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    justify-content: center;
+    align-content: center;
     gap: 16px;
-    justify-items: center;
-    padding: 20px;
-    max-width: 600px;
     margin: 0 auto;
   }
-
+  
   body {
     margin: 0;
-    padding: 300px;
+    padding: 0;
     box-sizing: border-box;
     background-color: #121212;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: white;
   }
+  
+  
   
   .container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* alinha vertical */
-    align-items: center;     /* alinha horizontal */
+    justify-content: center; 
+    align-items: center;
     padding: 2rem;
   }
   
   button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #ee1279;
-    color: white;
+    padding: 12px 24px;
+    font-size: 1.1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    color: white;
     cursor: pointer;
     margin-bottom: 20px;
-    transition: background-color 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 8px rgba(255, 110, 196, 0.5);
+    font-family: 'Poppins', sans-serif;
   }
   
   button:hover {
-    background-color: #d8087e;
+    transform: scale(1.05);
+    box-shadow: 0 0 14px rgba(255, 110, 196, 0.7);
   }
+  
 
   .titulo {
-    font-size: 2.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
     margin-bottom: 20px;
-    color: #f8e289;
-    text-shadow: 2px 2px #000;
+    color: #ffd6f7;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    animation: glowUp 2s ease-in-out infinite alternate;
     text-align: center;
   }
+  
 
   .mensagem-vitoria {
     font-size: 1.5rem;
@@ -123,28 +140,89 @@
   }
   .barra-tempo {
     text-align: center;
-    width: 100%;
+    width: 50%;
     height: 50px;
-    background-color: #d8719c;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
     border-radius: 14px;
     overflow: hidden;
     margin: 10px 0;
     position: relative;
+    box-shadow: 0 0 10px rgba(255, 110, 196, 0.5);
   }
-  
+
   .progresso {
     height: 100%;
-    background-color: #e74c3c; /* vermelho visível */
+    background-color: rgba(0, 0, 0, 0.2);
     transition: width 1s linear;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #ffffff;
     font-weight: bold;
     font-size: 16px;
+    backdrop-filter: blur(2px);
+  }
+
+.tempo-texto {
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+}
+  
+  .board-fácil {
+    grid-template-columns: repeat(4, 80px);
   }
   
-  .tempo-texto {
-    z-index: 2;
+  .board-intermediário {
+    grid-template-columns: repeat(5, 80px);
   }
+  
+  .board-difícil {
+    grid-template-columns: repeat(6, 80px);
+  }
+  .botoes-nivel {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .botoes-nivel button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right, #ff6ec4, #7873f5);
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .botoes-nivel button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(255, 110, 196, 0.6);
+  }
+  .tela-inicial h1 {
+    animation: popFade 1s ease-in-out forwards;
+  }
+  
+  @keyframes popFade {
+    from {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  .tela-inicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+      
+ 
   

@@ -16,8 +16,27 @@ function GameBoard() {
     const [timerAtivo, setTimerAtivo] = useState(false);
     const [derrota, setDerrota] = useState(false);
 
-    const reiniciarJogo = () => {
-        const emojis = ['🐶', '🍕', '🌈', '🎧', '🚀', '💎', '🐱', '🌟', '⚡', '🍩', '🧃', '🎲'];
+    const iniciarJogo = (nivel) => {
+        setNivelSelecionado(nivel);
+        reiniciarJogo(nivel);
+    };
+
+
+    const reiniciarJogo = (nivel = nivelSelecionado) => {
+
+        let emojis = [];
+
+        if (nivel === "Fácil") {
+            emojis = ['🐶', '🍕', '🌈', '🎧', '🌟'];
+            setTempoRestante(90);
+        } else if (nivel === "Intermediário") {
+            emojis = ['🐶', '🍕', '🌈', '🎧', '🚀', '💎', '🐱', '🌟',];
+            setTempoRestante(60);
+        } else if (nivel === "Difícil") {
+            emojis = ['🐶', '🍕', '🌈', '🎧', '🚀', '💎', '🐱', '🌟', '⚡', '🍩', '🧃', '🎲'];
+            setTempoRestante(50);
+        }
+
         const duplicated = [...emojis, ...emojis]; // dobra tudo p virar pares
         const shuffled = duplicated
             .sort(() => Math.random() - 0.5)
@@ -66,7 +85,12 @@ function GameBoard() {
 
         if (!timerAtivo) {
             setTimerAtivo(true);
-            setTempoRestante(90); // ou 30, 90, etc.
+            setTempoRestante(
+                nivelSelecionado === "Fácil" ? 90 :
+                    nivelSelecionado === "Intermediário" ? 60 :
+                        50
+            );
+
         }
 
         if (selected.length === 2 || selected.includes(index)) return;
@@ -124,53 +148,73 @@ function GameBoard() {
     // interface
     return (
         <div className="container">
-            <h1 className="titulo">🧠 Jogo da Memória 🧠</h1>
-            {vitoria && (
-                <div className="mensagem-vitoria">
-                    ✨ Parabéns! Você completou o jogo! ✨
-                </div>
-            )}
-            {tempoRestante !== null && !vitoria && !derrota && (
-                <div className="barra-tempo">
-                    <p>⏳ Tempo restante: {tempoRestante}s</p>
-                    <div
-                        className="progresso"
-                        style={{ width: `${(tempoRestante / 120) * 100}%` }}
-                    >
-                        <span className="tempo-texto">{tempoRestante}</span>
+            {!nivelSelecionado ? (
+                <div className="tela-inicial">
+                    <h1 className="titulo">🎮 Escolha o Nível</h1>
+                    <div className="botoes-nivel">
+                        <button onClick={() => iniciarJogo("Fácil")}>Fácil</button>
+                        <button onClick={() => iniciarJogo("Intermediário")}>Intermediário</button>
+                        <button onClick={() => iniciarJogo("Difícil")}>Difícil</button>
                     </div>
                 </div>
-            )}
-
-            {derrota && (
-                <div className="mensagem-derrota">
-                    😢 Tempo esgotado! Você perdeu!
-                </div>
-            )}
-            <button onClick={reiniciarJogo}>🔄 Reiniciar Jogo</button>
-            <div className="board">
-                {cards.map((card, index) => {
-                    const isFlipped = selected.includes(index) || matched.includes(card.emoji);
-                    return (
-                        <div
-                            key={card.id}
-                            className="card"
-                            onClick={() => handleClick(index)}
-                        >
-                            <div className={`inner ${isFlipped ? 'flipped' : ''}`}>
-                                <div className="front">{card.emoji}</div>
-                                <div className="back">❓</div>
-                            </div>
-
-
+            ) : (
+                <>
+                    <h1 className="titulo">🧠 Jogo da Memória 🧠</h1>
+                    {vitoria && (
+                        <div className="mensagem-vitoria">
+                            ✨ Aeeee! Finalmente ganhou, né?! ✨
                         </div>
+                    )}
+                    {tempoRestante !== null && !vitoria && !derrota && (
+                        <div className="barra-tempo">
+                            <p>⏳ Tempo restante: {tempoRestante}s</p>
+                            <div
+                                className="progresso"
+                                style={{
+                                    width: `${(tempoRestante / (
+                                        nivelSelecionado === "Fácil" ? 90 :
+                                            nivelSelecionado === "Intermediário" ? 60 :
+                                                50
+                                    )) * 100}%`
+                                }}
 
-                    );
-                })}
-            </div>
+                            >
+                                <span className="tempo-texto">{tempoRestante}</span>
+                            </div>
+                        </div>
+                    )}
 
-            <Ranking />
+                    {derrota && (
+                        <div className="mensagem-derrota">
+                            😢 slk, ruim demais! Perdeu, parceiro!
+                        </div>
+                    )}
+                    <button onClick={reiniciarJogo}>🔄 Reiniciar Jogo</button>
+                    <div className={`board board-${nivelSelecionado?.toLowerCase()}`}>
+
+                        {cards.map((card, index) => {
+                            const isFlipped = selected.includes(index) || matched.includes(card.emoji);
+                            return (
+                                <div
+                                    key={card.id}
+                                    className="card"
+                                    onClick={() => handleClick(index)}
+                                >
+                                    <div className={`inner ${isFlipped ? 'flipped' : ''}`}>
+                                        <div className="front">{card.emoji}</div>
+                                        <div className="back">❓</div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    <Ranking />
+                </>
+            )}
         </div>
+
+
     );
 }
 
