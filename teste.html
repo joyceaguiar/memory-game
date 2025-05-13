@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teste POST</title>
+</head>
+<body>
+  <h1>Enviar ranking de teste</h1>
+  <button onclick="enviar()">Enviar</button>
+
+  <script>
+    function enviar() {
+      fetch("http://localhost:3001/rankings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nome: "Joyce",
+          nivel: "Difícil",
+          tentativas: 7
+        })
+      })
+      .then(res => res.json())
+      .then(data => console.log("Resposta do servidor:", data))
+      .catch(erro => console.error("Erro ao enviar:", erro));
+    }
+  </script>
+</body>
+</html>
