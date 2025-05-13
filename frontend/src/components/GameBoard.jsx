@@ -16,6 +16,7 @@ function GameBoard() {
     const [timerAtivo, setTimerAtivo] = useState(false);
     const [derrota, setDerrota] = useState(false);
 
+
     const iniciarJogo = (nivel) => {
         setNivelSelecionado(nivel);
         reiniciarJogo(nivel);
@@ -145,6 +146,19 @@ function GameBoard() {
         }
     };
 
+    const voltarParaMenu = () => {
+        setNivelSelecionado(null);
+        setCards([]);
+        setSelected([]);
+        setMatched([]);
+        setVitoria(false);
+        setTentativas(0);
+        setTempoRestante(null);
+        setTimerAtivo(false);
+        setDerrota(false);
+    };
+
+
     // interface
     return (
         <div className="container">
@@ -189,7 +203,10 @@ function GameBoard() {
                             😢 slk, ruim demais! Perdeu, parceiro!
                         </div>
                     )}
-                    <button onClick={reiniciarJogo}>🔄 Reiniciar Jogo</button>
+                    <button onClick={() => iniciarJogo(nivelSelecionado)}> Reiniciar Jogo</button>
+                    <button onClick={voltarParaMenu}> Voltar ao Menu</button>
+
+
                     <div className={`board board-${nivelSelecionado?.toLowerCase()}`}>
 
                         {cards.map((card, index) => {
