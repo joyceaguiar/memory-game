@@ -198,9 +198,9 @@ function GameBoard() {
                                 className="progresso"
                                 style={{
                                     width: `${(tempoRestante / (
-                                        nivelSelecionado === "Fácil" ? 90 :
-                                            nivelSelecionado === "Intermediário" ? 60 :
-                                                50
+                                        nivelSelecionado === "Fácil" ? 60 :
+                                            nivelSelecionado === "Intermediário" ? 50 :
+                                                45
                                     )) * 100}%`
                                 }}
 
