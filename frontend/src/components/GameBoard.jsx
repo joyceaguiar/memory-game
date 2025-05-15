@@ -18,6 +18,7 @@ function GameBoard() {
     const [timerAtivo, setTimerAtivo] = useState(false);
     const [derrota, setDerrota] = useState(false);
     const [atualizarRanking, setAtualizarRanking] = useState(false);
+    const [mostrarTudo, setMostrarTudo] = useState(false);
 
 
     const iniciarJogo = (nivel) => {
@@ -37,7 +38,7 @@ function GameBoard() {
             emojis = ['🐶', '🍕', '🌈', '🎧', '🚀', '💎', '🐱', '🌟', '🏆', '💻'];
             setTempoRestante(60);
         } else if (nivel === "Difícil") {
-            emojis = ['🐶', '🍕', '🌈', '🎧', '🚀', '💎', '🐱', '🌟', '⚡', '🍩', '🧃', '🎲'];
+            emojis = ['🐶', '🍕', '🌈', '🎧', '🚀', '💎', '🐱', '🌟', '⚡', '🍩', '🧃', '🎲', '🏆', '💻'];
             setTempoRestante(50);
         }
 
@@ -57,6 +58,11 @@ function GameBoard() {
         setTempoRestante(null);
         setTimerAtivo(false);
         setDerrota(false);
+        setMostrarTudo(true);
+        setTimeout(() => {
+            setMostrarTudo(false);
+        }, 2000); // 2 segundos
+
 
     };
 
@@ -90,9 +96,9 @@ function GameBoard() {
         if (!timerAtivo) {
             setTimerAtivo(true);
             setTempoRestante(
-                nivelSelecionado === "Fácil" ? 90 :
-                    nivelSelecionado === "Intermediário" ? 60 :
-                        50
+                nivelSelecionado === "Fácil" ? 60 :
+                    nivelSelecionado === "Intermediário" ? 50 :
+                        45
             );
 
         }
@@ -159,6 +165,7 @@ function GameBoard() {
     };
 
     const voltarParaMenu = () => {
+        setMostrarTudo(false);
         setNivelSelecionado(null);
         setCards([]);
         setSelected([]);
@@ -222,7 +229,7 @@ function GameBoard() {
                     <div className={`board board-${nivelSelecionado?.toLowerCase()}`}>
 
                         {cards.map((card, index) => {
-                            const isFlipped = selected.includes(index) || matched.includes(card.emoji);
+                            const isFlipped = mostrarTudo || selected.includes(index) || matched.includes(card.emoji);
                             return (
                                 <div
                                     key={card.id}
