@@ -195,7 +195,7 @@ function GameBoard() {
                     <h1 className="titulo">🧠 Jogo da Memória 🧠</h1>
                     {vitoria && (
                         <div className="mensagem-vitoria">
-                            ✨ Aeeee! Finalmente ganhou, né?! ✨
+                            ✨ Parabéns! Você ganhou! ✨
                         </div>
                     )}
                     {tempoRestante !== null && !vitoria && !derrota && (
@@ -219,10 +219,10 @@ function GameBoard() {
 
                     {derrota && (
                         <div className="mensagem-derrota">
-                            😢 slk, ruim demais! Perdeu, parceiro!
+                            😢 Que pena! Você perdeu!
                         </div>
                     )}
-                    <button onClick={() => iniciarJogo(nivelSelecionado)}> Reiniciar Jogo</button>
+                    <button onClick={() => iniciarJogo(nivelSelecionado)}> Reiniciar </button>
                     <button onClick={voltarParaMenu}> Voltar ao Menu</button>
 
 
