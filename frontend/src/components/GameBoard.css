@@ -239,4 +239,51 @@
     }
   }
   
-  
+/* 📱 Para telas até 768px (celulares e tablets pequenos) */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .titulo {
+    font-size: 1.8rem;
+  }
+
+  .card {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .board-fácil {
+    grid-template-columns: repeat(3, 60px);
+  }
+
+  .board-intermediário {
+    grid-template-columns: repeat(4, 60px);
+  }
+
+  .board-difícil {
+    grid-template-columns: repeat(5, 60px);
+  }
+
+  button, .botoes-nivel button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  .barra-tempo {
+    width: 90%;
+    height: 40px;
+  }
+
+  .ranking-container {
+    width: 100%;
+    font-size: 0.8rem;
+    overflow-x: auto;
+  }
+
+  table th, table td {
+    padding: 4px 8px;
+  }
+}
