@@ -20,7 +20,6 @@ function GameBoard() {
     const [atualizarRanking, setAtualizarRanking] = useState(false);
 
 
-
     const iniciarJogo = (nivel) => {
         setNivelSelecionado(nivel);
         reiniciarJogo(nivel);
@@ -112,40 +111,42 @@ function GameBoard() {
 
             if (cards[firstIndex].emoji === cards[secondIndex].emoji) {
                 setMatched((prev) => {
-                    const novosAcertos = [...prev, cards[firstIndex].emoji];
+                    const novosAcertos = [...matched, cards[firstIndex].emoji];
+                    setMatched(novosAcertos);
 
                     if (novosAcertos.length === cards.length / 2) {
-                        const nome = prompt("Digite seu nome para o ranking:");
-
                         setVitoria(true);
 
+                        setTimeout(() => {
+                            const nome = prompt("Digite seu nome para o ranking:");
+                            if (nome) {
+                                confetti({
+                                    particleCount: 150,
+                                    spread: 90,
+                                    origin: { y: 0.6 }
+                                });
 
-                        confetti({
-                            particleCount: 150,
-                            spread: 90,
-                            origin: { y: 0.6 }
-                        });
-
-                        fetch(`${BASE_URL}/rankings`, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                nome,
-                                nivel,
-                                tentativas
-                            })
-                        })
-                            .then(res => res.json())
-                            .then(data => {
-                                console.log("✅ Enviado com sucesso:", data);
-                                setAtualizarRanking(prev => !prev);
-                            })
-                            .catch(erro => console.error("Erro ao enviar:", erro));
-
-
+                                fetch(`${BASE_URL}/rankings`, {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/json"
+                                    },
+                                    body: JSON.stringify({
+                                        nome,
+                                        nivel: nivelSelecionado,
+                                        tentativas
+                                    })
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        console.log("✅ Enviado com sucesso:", data);
+                                        setAtualizarRanking(prev => !prev);
+                                    })
+                                    .catch(erro => console.error("Erro ao enviar:", erro));
+                            }
+                        }, 300);
                     }
+
 
                     return novosAcertos;
                 });
@@ -237,7 +238,7 @@ function GameBoard() {
                         })}
                     </div>
 
-                    <Ranking atualizar={atualizarRanking} />
+                    <Ranking atualizarRanking={atualizarRanking} />
 
                 </>
             )}
