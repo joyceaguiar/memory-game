@@ -3,7 +3,7 @@ import './Ranking.css';
 
 const BASE_URL = "http://localhost:3001";
 
-function Ranking({ atualizar }) {
+function Ranking({ atualizar = false }) {
   const [ranking, setRanking] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function Ranking({ atualizar }) {
         setRanking(ordenado.slice(0, 10)); // Top 10
       })
       .catch(err => console.error("Erro ao carregar ranking:", err));
-  }, [atualizar]); // Atualiza sempre que a prop mudar
+  }, [atualizar]);
 
   return (
     <div className="ranking-container">
@@ -34,7 +34,7 @@ function Ranking({ atualizar }) {
               <td>{item.nome}</td>
               <td>{item.nivel}</td>
               <td>{item.tentativas}</td>
-              <td>{new Date(item.data).toLocaleDateString('pt-BR')}</td>
+              <td>{item.data ? new Date(item.data).toLocaleDateString('pt-BR') : '–'}</td>
             </tr>
           ))}
         </tbody>
