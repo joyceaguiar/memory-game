@@ -126,6 +126,12 @@ function GameBoard() {
                         setTimeout(() => {
                             const nome = prompt("Digite seu nome para o ranking:");
                             if (nome) {
+
+                                const tempoGasto =
+                                    (nivelSelecionado === "Fácil" ? 60 :
+                                        nivelSelecionado === "Intermediário" ? 50 :
+                                            45) - tempoRestante;
+
                                 confetti({
                                     particleCount: 150,
                                     spread: 90,
@@ -140,13 +146,14 @@ function GameBoard() {
                                     body: JSON.stringify({
                                         nome,
                                         nivel: nivelSelecionado,
-                                        tentativas
+                                        tempo: tempoGasto,
+                                        data: new Date().toISOString()
                                     })
                                 })
                                     .then(res => res.json())
                                     .then(data => {
                                         console.log("✅ Enviado com sucesso:", data);
-                                        setAtualizarRanking(Date.now());
+                                        setAtualizarRanking(Date.now()); // usando timestamp para garantir atualização
                                     })
                                     .catch(erro => console.error("Erro ao enviar:", erro));
                             }

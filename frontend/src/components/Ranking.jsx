@@ -10,7 +10,7 @@ function Ranking({ atualizar = false }) {
     fetch(`${BASE_URL}/rankings`)
       .then(res => res.json())
       .then(data => {
-        const ordenado = [...data].sort((a, b) => a.tentativas - b.tentativas);
+        const ordenado = [...data].sort((a, b) => a.tempo - b.tempo);
         setRanking(ordenado.slice(0, 10)); // Top 10
       })
       .catch(err => console.error("Erro ao carregar ranking:", err));
@@ -24,7 +24,7 @@ function Ranking({ atualizar = false }) {
           <tr>
             <th>Nome</th>
             <th>Nível</th>
-            <th>Tentativas</th>
+            <th>Tempo (s)</th>
             <th>Data</th>
           </tr>
         </thead>
@@ -33,7 +33,7 @@ function Ranking({ atualizar = false }) {
             <tr key={index}>
               <td>{item.nome}</td>
               <td>{item.nivel}</td>
-              <td>{item.tentativas}</td>
+              <td>{item.tempo}</td>
               <td>{item.data ? new Date(item.data).toLocaleDateString('pt-BR') : '–'}</td>
             </tr>
           ))}
