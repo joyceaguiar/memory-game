@@ -88,3 +88,22 @@ td {
   min-width: 480px;
   border-collapse: collapse;
 }
+
+.tabela-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+.ranking-container th,
+.ranking-container td {
+  white-space: nowrap;
+}
+.tabela-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tabela-scroll::-webkit-scrollbar-thumb {
+  background: #ff6ec4;
+  border-radius: 10px;
+}
