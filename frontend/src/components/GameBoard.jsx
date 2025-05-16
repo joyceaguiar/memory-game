@@ -146,7 +146,7 @@ function GameBoard() {
                                     .then(res => res.json())
                                     .then(data => {
                                         console.log("✅ Enviado com sucesso:", data);
-                                        setAtualizarRanking(prev => !prev);
+                                        setAtualizarRanking(Date.now());
                                     })
                                     .catch(erro => console.error("Erro ao enviar:", erro));
                             }

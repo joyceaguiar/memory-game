@@ -1,4 +1,10 @@
 {
-    "rankings": []
-  }
-  
+  "rankings": [
+    {
+      "nome": "Joyce",
+      "nivel": "Fácil",
+      "tentativas": 5,
+      "data": "2025-05-16T18:38:38.999Z"
+    }
+  ]
+}
