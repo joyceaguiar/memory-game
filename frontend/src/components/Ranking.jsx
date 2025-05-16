@@ -19,26 +19,28 @@ function Ranking({ atualizar = false }) {
   return (
     <div className="ranking-container">
       <h2>🏆 Ranking dos Jogadores</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Nível</th>
-            <th>Tempo (s)</th>
-            <th>Data</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ranking.map((item, index) => (
-            <tr key={index}>
-              <td>{item.nome}</td>
-              <td>{item.nivel}</td>
-              <td>{item.tempo}</td>
-              <td>{item.data ? new Date(item.data).toLocaleDateString('pt-BR') : '–'}</td>
+      <div className="tabela-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Nível</th>
+              <th>Tempo (s)</th>
+              <th>Data</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {ranking.map((item, index) => (
+              <tr key={index}>
+                <td>{item.nome}</td>
+                <td>{item.nivel}</td>
+                <td>{item.tempo}</td>
+                <td>{item.data ? new Date(item.data).toLocaleDateString('pt-BR') : '–'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

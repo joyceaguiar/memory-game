@@ -275,13 +275,32 @@ button:hover {
     height: 40px;
   }
 
+  /* 🔧 Estilo responsivo real para o ranking */
   .ranking-container {
     width: 100%;
-    font-size: 0.8rem;
     overflow-x: auto;
+    font-size: 0.85rem;
+    padding: 1rem;
   }
 
-  table th, table td {
-    padding: 4px 8px;
+  .ranking-container .tabela-scroll {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .ranking-container table {
+    min-width: 480px;
+    border-collapse: collapse;
+  }
+
+  .ranking-container th,
+  .ranking-container td {
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .ranking-container h2 {
+    font-size: 1.2rem;
   }
 }

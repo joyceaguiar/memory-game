@@ -53,20 +53,38 @@ td {
 
 @media (max-width: 768px) {
   .ranking-container {
-    overflow-x: auto;
     padding: 1rem;
   }
 
-  table {
-    min-width: 480px; /* força a tabela a rolar lateralmente se necessário */
+  .tabela-scroll {
+    overflow-x: auto;
+    width: 100%;
   }
 
-  th, td {
+  .tabela-scroll table {
+    min-width: 480px;
+    border-collapse: collapse;
+  }
+
+  .ranking-container th,
+  .ranking-container td {
     font-size: 12px;
     padding: 8px;
+    white-space: nowrap; /* evita quebra feia de texto */
   }
 
-  h2 {
+  .ranking-container h2 {
     font-size: 1.2rem;
   }
+}
+
+
+.tabela-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tabela-scroll table {
+  min-width: 480px;
+  border-collapse: collapse;
 }
