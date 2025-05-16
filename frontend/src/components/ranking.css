@@ -50,3 +50,23 @@ td {
   background-color: transparent;
   /* deixa o blur brilhar */
 }
+
+@media (max-width: 768px) {
+  .ranking-container {
+    overflow-x: auto;
+    padding: 1rem;
+  }
+
+  table {
+    min-width: 480px; /* força a tabela a rolar lateralmente se necessário */
+  }
+
+  th, td {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+}
