@@ -19,8 +19,8 @@ function Ranking({ atualizar = false }) {
   return (
     <div className="ranking-container">
       <h2>🏆 Ranking dos Jogadores</h2>
-      <div className="tabela-scroll" style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch', display: 'block' }}>
-        <table style={{ minWidth: '480px', width: 'max-content' }}>
+      <div className="tabela-scroll">
+        <table>
           <thead>
             <tr>
               <th>Nome</th>

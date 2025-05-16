@@ -7,9 +7,9 @@
   backdrop-filter: blur(6px);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   width: 100%;
-  /* ❌ tirado overflow-x aqui, ele pertence à tabela */
 }
 
+/* ---------- TÍTULO ---------- */
 .ranking-container h2 {
   margin-bottom: 16px;
   color: #fff;
@@ -22,7 +22,8 @@
   width: 100%;
   display: block;
   overflow-x: auto;
-  -webkit-overflow-scrolling: touch; /* ✨ Safari e iOS */
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 }
 
 .tabela-scroll table {
@@ -31,8 +32,7 @@
   border-collapse: collapse;
   background-color: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
-  border-radius: 8px;
-  overflow: hidden;
+  /* ❌ Tirado border-radius para evitar quebra no scroll do iOS */
 }
 
 thead {
