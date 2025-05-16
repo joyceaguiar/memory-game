@@ -219,7 +219,7 @@ button:hover {
 /* ---------- RESPONSIVIDADE MÁXIMA 🌟 ---------- */
 @media (max-width: 768px) {
   html, body {
-    overflow-x: hidden;
+    overflow-x: auto;
   }
 
   .container,

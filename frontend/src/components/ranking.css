@@ -1,3 +1,4 @@
+/* ---------- CONTAINER GERAL ---------- */
 .ranking-container {
   margin-top: 30px;
   padding: 20px;
@@ -5,16 +6,26 @@
   border-radius: 12px;
   backdrop-filter: blur(6px);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
 .ranking-container h2 {
   margin-bottom: 16px;
   color: #fff;
   text-align: center;
+  font-size: 1.5rem;
 }
 
-table {
+/* ---------- TABELA ---------- */
+.tabela-scroll {
   width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tabela-scroll table {
+  width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
   background-color: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
@@ -26,7 +37,7 @@ thead {
   background: linear-gradient(to right, #ff6ec4, #7873f5);
   color: white;
   font-weight: bold;
-  text-shadow: 0 0 4px rgba(0,0,0,0.5);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 th,
@@ -34,71 +45,23 @@ td {
   padding: 10px;
   text-align: center;
   font-size: 14px;
+  white-space: nowrap;
+}
+
+td {
+  color: white;
+  background-color: transparent;
 }
 
 tbody tr:nth-child(even) {
   background-color: #ffffff11;
-  /* leve contraste no escuro */
 }
 
 tbody tr:nth-child(odd) {
   background-color: #ffffff08;
 }
 
-td {
-  color: white;
-  background-color: transparent;
-  /* deixa o blur brilhar */
-}
-
-@media (max-width: 768px) {
-  .ranking-container {
-    padding: 1rem;
-  }
-
-  .tabela-scroll {
-    overflow-x: auto;
-    width: 100%;
-  }
-
-  .tabela-scroll table {
-    min-width: 480px;
-    border-collapse: collapse;
-  }
-
-  .ranking-container th,
-  .ranking-container td {
-    font-size: 12px;
-    padding: 8px;
-    white-space: nowrap; /* evita quebra feia de texto */
-  }
-
-  .ranking-container h2 {
-    font-size: 1.2rem;
-  }
-}
-
-
-.tabela-scroll {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.tabela-scroll table {
-  min-width: 480px;
-  border-collapse: collapse;
-}
-
-.tabela-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-}
-
-.ranking-container th,
-.ranking-container td {
-  white-space: nowrap;
-}
+/* ---------- SCROLLBAR ESTILIZADA ---------- */
 .tabela-scroll::-webkit-scrollbar {
   height: 6px;
 }
@@ -106,4 +69,25 @@ td {
 .tabela-scroll::-webkit-scrollbar-thumb {
   background: #ff6ec4;
   border-radius: 10px;
+}
+
+/* ---------- RESPONSIVO ---------- */
+@media (max-width: 768px) {
+  .ranking-container {
+    padding: 1rem;
+  }
+
+  .ranking-container h2 {
+    font-size: 1.2rem;
+  }
+
+  .tabela-scroll table {
+    min-width: 480px;
+  }
+
+  th,
+  td {
+    font-size: 12px;
+    padding: 8px;
+  }
 }
