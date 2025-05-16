@@ -1,41 +1,54 @@
 const express = require('express');
-const cors = require('cors');
 const fs = require('fs');
-
+const cors = require('cors');
 const app = express();
-const PORT = 3001;
 
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 
-const RANKINGS_FILE = 'rankings.json';
-
-app.get('/rankings', (req, res) => {
-    const data = fs.readFileSync(RANKINGS_FILE);
-    const rankings = JSON.parse(data);
-    res.json(rankings);
-});
-
+const RANKINGS_PATH = './rankings.json';
 
 app.post('/rankings', (req, res) => {
-    const { nome, nivel, tentativas } = req.body;
+  const novoRanking = {
+    ...req.body,
+    data: new Date().toISOString() // adiciona a data automaticamente
+  };
 
-    const novoRegistro = {
-        nome,
-        nivel,
-        tentativas,
-        data: new Date().toISOString()
-    };
+  // Lê o arquivo atual
+  fs.readFile(RANKINGS_PATH, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ erro: 'Erro ao ler ranking' });
 
-    const data = fs.readFileSync(RANKINGS_FILE);
-    const rankings = JSON.parse(data);
+    let rankings = [];
+    try {
+      rankings = JSON.parse(data).rankings || [];
+    } catch (e) {
+      return res.status(500).json({ erro: 'JSON inválido' });
+    }
 
-    rankings.push(novoRegistro);
+    // Adiciona o novo ranking
+    rankings.push(novoRanking);
 
-    fs.writeFileSync(RANKINGS_FILE, JSON.stringify(rankings, null, 2));
-    res.status(201).json({ status: 'ok' });
+    // Salva novamente o arquivo
+    fs.writeFile(RANKINGS_PATH, JSON.stringify({ rankings }, null, 2), (err) => {
+      if (err) return res.status(500).json({ erro: 'Erro ao salvar ranking' });
+
+      res.status(201).json({ mensagem: 'Ranking salvo com sucesso' });
+    });
+  });
 });
 
-app.listen(PORT, () => {
-    console.log(`✨ Servidor rodando em http://localhost:${PORT}`);
+app.get('/rankings', (req, res) => {
+  fs.readFile(RANKINGS_PATH, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ erro: 'Erro ao ler ranking' });
+
+    try {
+      const rankings = JSON.parse(data).rankings || [];
+      res.json(rankings);
+    } catch (e) {
+      res.status(500).json({ erro: 'JSON inválido' });
+    }
+  });
 });
+
+const PORT = 3001;
+app.listen(PORT, () => console.log(`🚀 Servidor rodando em http://localhost:${PORT}`));
