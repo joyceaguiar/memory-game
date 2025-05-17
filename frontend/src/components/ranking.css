@@ -62,14 +62,17 @@
 }
 
 .tabela-scroll table {
-  width: 100%;
+  width: max-content; /* Permite rolagem horizontal */
   min-width: 480px;
-  border-radius: 12px;
-  box-shadow: 0 0 12px rgba(255, 110, 196, 0.3);
   border-collapse: collapse;
   background-color: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
+  box-shadow: 0 0 12px rgba(255, 110, 196, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  table-layout: fixed; /* ESSENCIAL para evitar cortes no mobile */
 }
+
 
 /* ---------- CABEÇALHO ---------- */
 thead {

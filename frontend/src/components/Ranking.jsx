@@ -20,7 +20,12 @@ function Ranking({ atualizar = false }) {
     <div className="ranking-container">
       <h2>🏆 Ranking dos Jogadores</h2>
       <p className="ranking-subtitulo">Veja os melhores tempos registrados até agora!</p>
-      <div className="tabela-scroll">
+      <div className="tabela-scroll"
+        style={{
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
+          display: 'block'
+        }}>
         <table>
           <thead>
             <tr>
