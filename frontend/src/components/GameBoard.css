@@ -2,9 +2,9 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #121212;
+  background-color: #0e0e0e;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  color: white;
+  color: #e0e0e0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,8 +24,8 @@ body {
   font-family: 'Orbitron', sans-serif;
   font-size: 3rem;
   margin-bottom: 20px;
-  color: #ffd6f7;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  color: #6fffe9;
+  text-shadow: 0 0 12px #0ff;
   animation: glowUp 2s ease-in-out infinite alternate;
   text-align: center;
 }
@@ -35,18 +35,18 @@ button {
   font-size: 1.1rem;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(to right, #ff6ec4, #7873f5);
+  background: linear-gradient(to right, #00f5a0, #00d9ff);
   color: white;
   cursor: pointer;
   margin-bottom: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 0 8px rgba(255, 110, 196, 0.5);
+  box-shadow: 0 0 12px rgba(0, 213, 255, 0.4);
   font-family: 'Poppins', sans-serif;
 }
 
 button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 14px rgba(255, 110, 196, 0.7);
+  box-shadow: 0 0 18px rgba(0, 213, 255, 0.7);
 }
 
 .botoes-nivel {
@@ -62,26 +62,26 @@ button:hover {
 
 .botoes-nivel button:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 12px rgba(255, 110, 196, 0.6);
+  box-shadow: 0 0 14px rgba(0, 213, 255, 0.6);
 }
 
 /* ---------- CARTAS ---------- */
 .card {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: linear-gradient(to right, #ff6ec4, #7873f5);
-  border-radius: 10px;
+  background: linear-gradient(to right, #00f5a0, #00d9ff);
+  border-radius: 12px;
   font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 0 8px rgba(255, 110, 196, 0.4);
+  box-shadow: 0 0 10px rgba(0, 213, 255, 0.4);
 }
 
 .card:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(255, 110, 196, 0.7);
+  box-shadow: 0 0 16px rgba(0, 213, 255, 0.7);
 }
 
 .inner {
@@ -145,7 +145,7 @@ button:hover {
 .mensagem-vitoria {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #00ffcc;
+  color: #00ffc3;
   text-align: center;
   animation: fadeIn 1s ease-in-out;
   opacity: 0;
@@ -157,31 +157,21 @@ button:hover {
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes brilho {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
-}
-
-@keyframes popFade {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
 @keyframes glowUp {
-  from { text-shadow: 0 0 8px rgba(255, 110, 196, 0.4); }
-  to { text-shadow: 0 0 20px rgba(255, 110, 196, 0.9); }
+  from { text-shadow: 0 0 8px rgba(0, 213, 255, 0.4); }
+  to { text-shadow: 0 0 20px rgba(0, 213, 255, 0.9); }
 }
 
 .barra-tempo {
   text-align: center;
   width: 50%;
   height: 50px;
-  background: linear-gradient(to right, #ff6ec4, #7873f5);
+  background: linear-gradient(to right, #00f5a0, #00d9ff);
   border-radius: 14px;
   overflow: hidden;
   margin: 10px 0;
   position: relative;
-  box-shadow: 0 0 10px rgba(255, 110, 196, 0.5);
+  box-shadow: 0 0 10px rgba(0, 213, 255, 0.5);
 }
 
 .progresso {
@@ -213,10 +203,10 @@ button:hover {
 }
 
 .tela-inicial h1 {
-  animation: popFade 1s ease-in-out forwards;
+  animation: fadeIn 1s ease-in-out forwards;
 }
 
-/* ---------- RESPONSIVIDADE MÁXIMA 🌟 ---------- */
+/* ---------- RESPONSIVIDADE ---------- */
 @media (max-width: 768px) {
   html, body {
     overflow-x: auto;
@@ -275,7 +265,6 @@ button:hover {
     height: 40px;
   }
 
-  /* 🔧 Estilo responsivo real para o ranking */
   .ranking-container {
     width: 100%;
     overflow-x: auto;

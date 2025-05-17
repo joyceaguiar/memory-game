@@ -1,18 +1,19 @@
 /* ---------- CONTAINER GERAL ---------- */
 .ranking-container {
-  animation: fadeUp 1s ease-in-out;
+  animation: fadeInUp 0.6s ease forwards;
   margin-top: 60px;
-  padding: 30px 24px;
+  padding: 32px 28px;
   position: relative;
-  background: #ffffff22;
-  border-radius: 12px;
-  backdrop-filter: blur(6px);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #1e1e2f, #2a2a3d);
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.4);
   width: 100%;
-  overflow-x: auto; /* ✅ Deixa o conteúdo rolar se passar */
+  overflow-x: auto;
+  color: #f1f1f1;
 }
 
-@keyframes fadeUp {
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(30px);
@@ -30,23 +31,24 @@
   left: -30%;
   width: 160%;
   height: 160%;
-  background: radial-gradient(circle at center, #ff6ec4 0%, transparent 70%);
-  opacity: 0.08;
+  background: radial-gradient(circle at center, #44ffd2 0%, transparent 70%);
+  opacity: 0.05;
   animation: pulse 6s infinite ease-in-out;
   z-index: 0;
 }
 
 /* ---------- TÍTULO ---------- */
 .ranking-container h2 {
-  margin-bottom: 8px;
-  color: #fff;
+  margin-bottom: 12px;
+  color: #00ffe0;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
 }
 
 .ranking-subtitulo {
-  color: #ccc;
-  font-size: 0.9rem;
+  color: #999;
+  font-size: 0.95rem;
   text-align: center;
   margin-top: 0;
   margin-bottom: 24px;
@@ -62,42 +64,42 @@
 
 .tabela-scroll table {
   width: max-content;
-  min-width: 480px;
+  min-width: 500px;
   border-collapse: collapse;
-  background-color: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 0 12px rgba(255, 110, 196, 0.3);
+  background-color: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(5px);
   border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0, 255, 230, 0.1);
 }
 
 /* ---------- CABEÇALHO ---------- */
 thead {
-  background: linear-gradient(to right, #ff6ec4, #7873f5);
-  color: white;
+  background: linear-gradient(to right, #00ffe0, #44ffd2);
+  color: #1a1a1a;
   font-weight: bold;
-  text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+  text-shadow: none;
 }
 
 /* ---------- CÉLULAS ---------- */
 th,
 td {
-  padding: 14px 12px;
+  padding: 14px 16px;
   text-align: center;
   font-size: 14px;
   white-space: nowrap;
 }
 
-td {
-  color: white;
-  background-color: transparent;
-}
-
 tbody tr:nth-child(even) {
-  background-color: #ffffff11;
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #ffffff08;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+td {
+  color: #eee;
 }
 
 /* ---------- SCROLLBAR BONITA ---------- */
@@ -106,18 +108,18 @@ tbody tr:nth-child(odd) {
 }
 
 .tabela-scroll::-webkit-scrollbar-thumb {
-  background: #ff6ec4;
+  background: #00ffe0;
   border-radius: 10px;
 }
 
 /* ---------- RESPONSIVO ---------- */
 @media (max-width: 768px) {
   .ranking-container {
-    padding: 1rem;
+    padding: 1.5rem;
   }
 
   .ranking-container h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .tabela-scroll table {
@@ -126,25 +128,7 @@ tbody tr:nth-child(odd) {
 
   th,
   td {
-    font-size: 12px;
+    font-size: 12.5px;
     padding: 10px 8px;
   }
-}
-
-/* ---------- ANIMAÇÃO E DECORAÇÃO EXTRA ---------- */
-.botoes-nivel button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 16px rgba(255, 110, 196, 0.8);
-}
-
-.titulo::before {
-  content: "🎮";
-  display: inline-block;
-  margin-right: 10px;
-  animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
 }

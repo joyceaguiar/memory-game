@@ -5,7 +5,6 @@ import Ranking from './Ranking';
 
 const BASE_URL = "http://localhost:3001";
 
-
 function GameBoard() {
     const [nivelSelecionado, setNivelSelecionado] = useState(null);
     const [cards, setCards] = useState([]);
@@ -19,16 +18,14 @@ function GameBoard() {
     const [derrota, setDerrota] = useState(false);
     const [atualizarRanking, setAtualizarRanking] = useState(false);
     const [mostrarTudo, setMostrarTudo] = useState(false);
-
+    const [mostrarRanking, setMostrarRanking] = useState(false);
 
     const iniciarJogo = (nivel) => {
         setNivelSelecionado(nivel);
         reiniciarJogo(nivel);
     };
 
-
     const reiniciarJogo = (nivel = nivelSelecionado) => {
-
         let emojis = [];
 
         if (nivel === "Fácil") {
@@ -42,7 +39,7 @@ function GameBoard() {
             setTempoRestante(50);
         }
 
-        const duplicated = [...emojis, ...emojis]; // dobra tudo p virar pares
+        const duplicated = [...emojis, ...emojis];
         const shuffled = duplicated
             .sort(() => Math.random() - 0.5)
             .map((emoji, index) => ({
@@ -61,12 +58,9 @@ function GameBoard() {
         setMostrarTudo(true);
         setTimeout(() => {
             setMostrarTudo(false);
-        }, 2000); // 2 segundos
-
-
+        }, 2000);
     };
 
-    // usa essa função assim que o componente carrega
     useEffect(() => {
         reiniciarJogo();
     }, []);
@@ -89,9 +83,8 @@ function GameBoard() {
         return () => clearInterval(intervalo);
     }, [timerAtivo, tempoRestante]);
 
-    // lógica de clique
     const handleClick = (index) => {
-        if (vitoria) return;
+        if (vitoria || selected.length === 2 || selected.includes(index) || derrota) return;
 
         if (!timerAtivo) {
             setTimerAtivo(true);
@@ -100,33 +93,24 @@ function GameBoard() {
                     nivelSelecionado === "Intermediário" ? 50 :
                         45
             );
-
         }
-
-        if (selected.length === 2 || selected.includes(index)) return;
-
-        if (derrota) return;
 
         const newSelected = [...selected, index];
         setSelected(newSelected);
 
         if (newSelected.length === 2) {
             setTentativas(prev => prev + 1);
-
             const [firstIndex, secondIndex] = newSelected;
 
             if (cards[firstIndex].emoji === cards[secondIndex].emoji) {
                 setMatched((prev) => {
                     const novosAcertos = [...matched, cards[firstIndex].emoji];
-                    setMatched(novosAcertos);
-
                     if (novosAcertos.length === cards.length / 2) {
                         setVitoria(true);
 
                         setTimeout(() => {
                             const nome = prompt("Digite seu nome para o ranking:");
                             if (nome) {
-
                                 const tempoGasto =
                                     (nivelSelecionado === "Fácil" ? 60 :
                                         nivelSelecionado === "Intermediário" ? 50 :
@@ -153,14 +137,12 @@ function GameBoard() {
                                     .then(res => res.json())
                                     .then(data => {
                                         console.log("✅ Enviado com sucesso:", data);
-                                        setAtualizarRanking(Date.now()); // usando timestamp para garantir atualização
+                                        setAtualizarRanking(Date.now());
                                     })
                                     .catch(erro => console.error("Erro ao enviar:", erro));
                             }
                         }, 300);
                     }
-
-
                     return novosAcertos;
                 });
             }
@@ -184,8 +166,6 @@ function GameBoard() {
         setDerrota(false);
     };
 
-
-    // interface
     return (
         <div className="container">
             {!nivelSelecionado ? (
@@ -196,17 +176,18 @@ function GameBoard() {
                         <button onClick={() => iniciarJogo("Intermediário")}>Intermediário</button>
                         <button onClick={() => iniciarJogo("Difícil")}>Difícil</button>
                     </div>
-                    <Ranking atualizarRanking={atualizarRanking} />
+                    <button
+                        className="btn-ver-ranking"
+                        onClick={() => setMostrarRanking(!mostrarRanking)}
+                    >
+                        {mostrarRanking ? '🔽 Ocultar Ranking' : '🔼 Ver Ranking'}
+                    </button>
+                    {mostrarRanking && <Ranking atualizarRanking={atualizarRanking} />}
                 </div>
-
             ) : (
                 <>
                     <h1 className="titulo">🧠 Jogo da Memória 🧠</h1>
-                    {vitoria && (
-                        <div className="mensagem-vitoria">
-                            ✨ Parabéns! Você ganhou! ✨
-                        </div>
-                    )}
+                    {vitoria && <div className="mensagem-vitoria">✨ Parabéns! Você ganhou! ✨</div>}
                     {tempoRestante !== null && !vitoria && !derrota && (
                         <div className="barra-tempo">
                             <p>⏳ Tempo restante: {tempoRestante}s</p>
@@ -215,36 +196,21 @@ function GameBoard() {
                                 style={{
                                     width: `${(tempoRestante / (
                                         nivelSelecionado === "Fácil" ? 60 :
-                                            nivelSelecionado === "Intermediário" ? 50 :
-                                                45
-                                    )) * 100}%`
+                                            nivelSelecionado === "Intermediário" ? 50 : 45)) * 100}%`
                                 }}
-
                             >
                                 <span className="tempo-texto">{tempoRestante}</span>
                             </div>
                         </div>
                     )}
-
-                    {derrota && (
-                        <div className="mensagem-derrota">
-                            😢 Que pena! Você perdeu!
-                        </div>
-                    )}
-                    <button onClick={() => iniciarJogo(nivelSelecionado)}> Reiniciar </button>
-                    <button onClick={voltarParaMenu}> Voltar ao Menu</button>
-
-
+                    {derrota && <div className="mensagem-derrota">😢 Que pena! Você perdeu!</div>}
+                    <button onClick={() => iniciarJogo(nivelSelecionado)}>Reiniciar</button>
+                    <button onClick={voltarParaMenu}>Voltar ao Menu</button>
                     <div className={`board board-${nivelSelecionado?.toLowerCase()}`}>
-
                         {cards.map((card, index) => {
                             const isFlipped = mostrarTudo || selected.includes(index) || matched.includes(card.emoji);
                             return (
-                                <div
-                                    key={card.id}
-                                    className="card"
-                                    onClick={() => handleClick(index)}
-                                >
+                                <div key={card.id} className="card" onClick={() => handleClick(index)}>
                                     <div className={`inner ${isFlipped ? 'flipped' : ''}`}>
                                         <div className="front">{card.emoji}</div>
                                         <div className="back">❓</div>
@@ -253,14 +219,10 @@ function GameBoard() {
                             );
                         })}
                     </div>
-
                 </>
             )}
         </div>
-
-
     );
 }
-
 
 export default GameBoard;
