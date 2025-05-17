@@ -19,6 +19,7 @@ function Ranking({ atualizar = false }) {
   return (
     <div className="ranking-container">
       <h2>🏆 Ranking dos Jogadores</h2>
+      <p className="ranking-subtitulo">Veja os melhores tempos registrados até agora!</p>
       <div className="tabela-scroll">
         <table>
           <thead>

@@ -1,21 +1,55 @@
 /* ---------- CONTAINER GERAL ---------- */
 .ranking-container {
-  margin-top: 30px;
-  padding: 20px;
+  animation: fadeUp 1s ease-in-out;
+  margin-top: 60px;
+  padding: 30px 24px;
+  position: relative;
   background: #ffffff22;
   border-radius: 12px;
   backdrop-filter: blur(6px);
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
   width: 100%;
-  overflow: hidden; /* 🚫 Nada de scroll aqui */
+  overflow: hidden;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ranking-container::before {
+  content: "";
+  position: absolute;
+  top: -30%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle at center, #ff6ec4 0%, transparent 70%);
+  opacity: 0.08;
+  animation: pulse 6s infinite ease-in-out;
+  z-index: 0;
 }
 
 /* ---------- TÍTULO ---------- */
 .ranking-container h2 {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   color: #fff;
   text-align: center;
   font-size: 1.5rem;
+}
+
+.ranking-subtitulo {
+  color: #ccc;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
 /* ---------- TABELA SCROLL WRAPPER ---------- */
@@ -24,11 +58,14 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   width: 100%;
+  margin-top: 12px;
 }
 
 .tabela-scroll table {
   width: 100%;
   min-width: 480px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(255, 110, 196, 0.3);
   border-collapse: collapse;
   background-color: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(4px);
@@ -45,7 +82,7 @@ thead {
 /* ---------- CÉLULAS ---------- */
 th,
 td {
-  padding: 10px;
+  padding: 14px 12px;
   text-align: center;
   font-size: 14px;
   white-space: nowrap;
@@ -85,13 +122,31 @@ tbody tr:nth-child(odd) {
   }
 
   .tabela-scroll table {
-    width: max-content; /* ✨ ESSA É A CHAVE */
+    width: max-content;
     min-width: 480px;
   }
 
   th,
   td {
     font-size: 12px;
-    padding: 8px;
+    padding: 10px 8px;
   }
+}
+
+/* ---------- ANIMAÇÃO E DECORAÇÃO EXTRA ---------- */
+.botoes-nivel button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(255, 110, 196, 0.8);
+}
+
+.titulo::before {
+  content: "🎮";
+  display: inline-block;
+  margin-right: 10px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }

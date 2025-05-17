@@ -190,13 +190,15 @@ function GameBoard() {
         <div className="container">
             {!nivelSelecionado ? (
                 <div className="tela-inicial">
-                    <h1 className="titulo">🎮 Escolha o Nível</h1>
+                    <h1 className="titulo">Escolha o Nível</h1>
                     <div className="botoes-nivel">
                         <button onClick={() => iniciarJogo("Fácil")}>Fácil</button>
                         <button onClick={() => iniciarJogo("Intermediário")}>Intermediário</button>
                         <button onClick={() => iniciarJogo("Difícil")}>Difícil</button>
                     </div>
+                    <Ranking atualizarRanking={atualizarRanking} />
                 </div>
+
             ) : (
                 <>
                     <h1 className="titulo">🧠 Jogo da Memória 🧠</h1>
@@ -251,8 +253,6 @@ function GameBoard() {
                             );
                         })}
                     </div>
-
-                    <Ranking atualizarRanking={atualizarRanking} />
 
                 </>
             )}
