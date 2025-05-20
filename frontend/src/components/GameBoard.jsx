@@ -3,7 +3,7 @@ import './GameBoard.css';
 import { useState, useEffect } from 'react';
 import Ranking from './Ranking';
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://192.168.1.8:3001";
 
 function GameBoard() {
     const [nivelSelecionado, setNivelSelecionado] = useState(null);

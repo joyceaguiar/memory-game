@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Ranking.css';
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://192.168.1.8:3001";
 
 function Ranking({ atualizar = false }) {
   const [ranking, setRanking] = useState([]);
