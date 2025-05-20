@@ -1,13 +1,13 @@
 
-# 🧠 Memory Game — Jogo da Memória
+# Memory Game — Jogo da Memória
 
-## ✨ Sobre o Projeto
+## Sobre o Projeto
 
 **Memory Game** é um jogo da memória online, desenvolvido com muito carinho utilizando tecnologias web. Nele, o jogador escolhe o nível de dificuldade e precisa encontrar todos os pares de cartas no menor tempo possível.
 
 ---
 
-## 🎯 Funcionalidades
+## Funcionalidades
 
 - ✅ Escolha de **nível de dificuldade**: Fácil, Intermediário e Difícil.
 - ✅ **Sistema de tempo**: cada nível tem um tempo limite.
@@ -16,7 +16,7 @@
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### 🖥️ **Frontend**
 - ReactJS
@@ -31,17 +31,17 @@
 
 ---
 
-## 🌟 Diferenciais do Projeto
+##  Diferenciais do Projeto
 
-- 🎨 Interface moderna, neon, com pegada tecnológica
-- 📱 Totalmente responsivo — funciona em desktop e celular
-- 🏆 Ranking dos melhores tempos — cria um aspecto competitivo
-- 🔥 Comunicação entre frontend e backend simulando uma API real
-- 🧠 Desenvolvido com conceitos de aplicações **Full Stack**
+- Interface moderna, neon, com pegada tecnológica
+- Totalmente responsivo — funciona em desktop e celular
+- Ranking dos melhores tempos — cria um aspecto competitivo
+- Comunicação entre frontend e backend simulando uma API real
+- Desenvolvido com conceitos de aplicações **Full Stack**
 
 ---
 
-## 💡 Aprendizados
+## Aprendizados
 
 - Criação e manipulação de componentes React
 - Gerenciamento de estados, eventos e efeitos (`useState` e `useEffect`)
@@ -52,7 +52,7 @@
 
 ---
 
-## 📸 Layout e Telas
+## Layout e Telas
 
 ### 🔹 Tela inicial — Escolha de Nível
 
@@ -84,7 +84,7 @@
 
 ---
 
-## 🚀 Como Rodar o Projeto Localmente
+## Como Rodar o Projeto Localmente
 
 ### 🖥️ Backend
 ```bash
@@ -112,6 +112,6 @@ Joyce Aguiar
 
 ---
 
-## 🔗 Licença
+## Licença
 
 Este projeto está sob a licença MIT.
