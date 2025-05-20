@@ -9,10 +9,10 @@
 
 ## Funcionalidades
 
-- ✅ Escolha de **nível de dificuldade**: Fácil, Intermediário e Difícil.
-- ✅ **Sistema de tempo**: cada nível tem um tempo limite.
-- ✅ **Ranking dos melhores jogadores**: registra nome, tempo, nível e data.
-- ✅ Feedback visual de **vitória**, **derrota** e até **confetes** quando ganha! 🎉
+- Escolha de **nível de dificuldade**: Fácil, Intermediário e Difícil.
+- **Sistema de tempo**: cada nível tem um tempo limite.
+- **Ranking dos melhores jogadores**: registra nome, tempo, nível e data.
+- Feedback visual de **vitória**, **derrota** e até **confetes** quando ganha! 🎉
 
 ---
 
