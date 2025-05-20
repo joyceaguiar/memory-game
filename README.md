@@ -106,9 +106,9 @@ Acesse:
 ---
 
 
-## 💁‍♀️ Autora
+## Autora
 
-Joyce Aguiar ✨
+Joyce Aguiar 
 
 ---
 
