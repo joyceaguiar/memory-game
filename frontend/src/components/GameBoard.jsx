@@ -203,7 +203,7 @@ function GameBoard() {
                             </div>
                         </div>
                     )}
-                    {derrota && <div className="mensagem-derrota">😢 Que pena! Você perdeu!</div>}
+                    {derrota && <div className="mensagem-derrota">Que pena! Você perdeu!</div>}
                     <button onClick={() => iniciarJogo(nivelSelecionado)}>Reiniciar</button>
                     <button onClick={voltarParaMenu}>Voltar ao Menu</button>
                     <div className={`board board-${nivelSelecionado?.toLowerCase()}`}>
